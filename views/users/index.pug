@@ -1,0 +1,26 @@
+extends ../layout/layout.pug
+block content
+    body#bodyView
+        .navbar#navbar
+            nav.navbar.navbar-expand-lg.navbar-light
+                img#logo(src="/img/0893.jpg_wh860.jpg")
+                a#bookStore.navbar-brand(href='/') Books Store           
+                #navbarTogglerDemo01.collapse.navbar-collapse
+        .container
+            h1 User
+            a(href = "user/create")
+                button.btn.btn-primary Create
+            table.table
+                tr
+                    th Avatar
+                    th Name
+                    th Phone
+                    th Action
+                each user in users
+                    tr
+                        td
+                            img(style ="with: 32px; height:32px")(src= user.image)
+                        td= user.name
+                        td= user.phone
+                        
+                        

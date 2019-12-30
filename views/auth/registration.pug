@@ -1,0 +1,31 @@
+extends ../layout/layout.pug 
+block content 
+    body#bodyView
+        .navbar#navbar
+            nav.navbar.navbar-expand-lg.navbar-light
+                img#logo(src="/img/0893.jpg_wh860.jpg")
+                a#bookStore.navbar-brand(href='/') Books Store           
+                #navbarTogglerDemo01.collapse.navbar-collapse
+        .container
+            a(href = "/user")
+                button.btn.btn-primary Home
+            if error
+                each errors in error
+                    .alert.alert-danger= error
+            form(action="/auth/registration", method="POST", enctype="multipart/form-data")
+                .form-group
+                    lable(for = "name") Name
+                    input#name.form-control(name = "name", type = "text",placeholder="full name",  value=values ? values.name : '')
+                .form-group 
+                    lable(for = "emailUser") Email
+                    input#email.form-control(name = "email", type = "text", placeholder="email" ,value=values? values.email : '')
+                .form-group
+                    lable(for = "passwordUser") Password
+                    input#password.form-control(name = "password", type = "password",placeholder="password")
+                .form-group
+                    lable(for = "phoneUser") Phone
+                    input#phone.form-control(name = "phone", type = "number",placeholder="phone number" ,value=values? values.phone : '')
+                .form-group
+                    lable(for = "image") Image  
+                    input#image.form-control-file(name = "image" ,type="file")
+                button.btn.btn-primary Registration

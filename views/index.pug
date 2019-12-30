@@ -1,0 +1,40 @@
+extends ../views/layout/layout.pug
+block content
+    html
+        head
+            title Books-Store
+        body#bodyIndex
+        .navbar#navbar
+            nav.navbar.navbar-expand-lg.navbar-light
+                img#logo(src="/img/0893.jpg_wh860.jpg")
+                a#bookStore.navbar-brand(href='/') Books Store           
+                #navbarTogglerDemo01.collapse.navbar-collapse
+                    form#formSearch(action="/product/search", method="GET", class="d-flex")
+                        input(type="text", name="q", class="form-control",placeholder="Search...")
+                        //- button(class="btn btn-primary ml-2") search
+                h6#contentNav "Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn." - Barack Obama
+                a#cart Cart
+                a#login(href = 'auth/login') Login
+                if user
+                    p= user.name
+                a#createProduct(href ="/product/createproduct") Create Product
+        .container#container
+            #head
+                a#home(href="/",class="fa fa-home") Home                    
+                a#introduce(href="/introduce", class="fa fa-info") Introduce 
+                a#product(href="/product", class="fa fa-bars") Products
+                a#contact(href="/contact", class="fa fa-phone") Contact   
+                a#user(href= "/user", class ="fas fa-user") Users
+            .row
+                each product in products
+                    .col-sm-6.col-md-4.col-lg-3
+                        .card.mb-3
+                            a(href='/product/viewproduct/' + product.id)
+                                img(style="width:253px;height:250px").card-img-top(src=product.image)
+                            .card-body(style="width:275")
+                                h5.card-title= product.name
+                                h5(style="color:red").card-title= product.price+ "₫"
+                                a.btn.btn-primary(style="width:115px;height:38px")(href='/product/shop/' + product.id) add to cart
+                                span &nbsp
+                                a.btn.btn-danger(style="width:115px;height:38px")(href='/product/delete/' + product.id) Delete
+                                a.btn.btn-warning(style="width:235px;height:38px")(href = '/product/updateproduct/' + product.id) Update Product

@@ -1,0 +1,22 @@
+extends ../layout/layout.pug
+block content
+    .h1#createProductPug 
+        .container
+            a(href='/')
+                button(style="width : 200px; height: 50px").btn.btn-info Home 
+            h1#txtCreateProduct Create Product
+            if error
+                each errors in error
+                    .alert.alert-danger= error
+            form(style="font-size: 20px")(action="/product/createproduct", method="POST", enctype="multipart/form-data")
+                .form-group
+                    label(for="name") Name
+                    input#name.form-control(name="name" , type="text", value=values ? values.name : '')
+
+                .form-group
+                    label(for="price") price
+                    input#price.form-control(name="price" , type="number", value=values ? values.price : '')
+                .form-group 
+                    label(for="image") Image
+                    input#image.form-control-file(name="image" type="file")
+                button(style="width : 200px; height: 50px; margin-left: 400px").btn.btn-info Create
